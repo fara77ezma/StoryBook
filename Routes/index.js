@@ -3,7 +3,11 @@ const router=express.Router();
 const Story=require('../models/Story');
 
 const {ensureAuth,ensureGuest}=require('../midleware/auth');
-
+router.get('/',(req,res)=>{
+  res.render('login',{
+    layout:'login'
+  });
+})
 router.get('/login',ensureGuest,(req,res)=>{
   res.render('login',{
     layout:'login'
