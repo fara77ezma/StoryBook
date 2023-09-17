@@ -18,6 +18,10 @@ const storySchema=mongoose.Schema({
   type:mongoose.Schema.Types.ObjectId,
   ref:'User'
   },
+  localuser: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'localUser'
+  },
   createdAt:{
      type:Date,
      defualt:Date.now

@@ -1,0 +1,60 @@
+
+
+<h3>Log in</h3>
+{{#if  msg}}
+  <div class="row">
+    <div class="input-field warning">
+      <span class="icon">⚠️</span>
+      <span class="message">{{msg}}</span>
+    </div>
+  </div>
+{{/if}}
+{{#if  sucessmsg}}
+  <div class="success-message">
+    <div class="success-icon">✔️</div>
+    <div class="success-text">{{sucessmsg}}</div>
+  </div>
+{{/if}}
+
+<div class="row">
+<div class="section">
+    <a href="/auth/google" class="btn darken-1">
+        <i class="fab fa-google left"></i> Log In With Google
+    </a>
+</div>
+</div>
+<div class="or-divider-container">
+<div class="or-divider">
+    <span class="or-text">OR</span>
+</div>
+</div>
+
+<div class="row">
+    <form action="/login" method="POST" class="col s12">
+
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="email" name="email" value="{{email}}">
+                <label for="title">E-mail</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input type="password" id="password" name="password" value="">
+                <label for="title">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <a href="/forget-password">Forget Password?</a>
+
+
+            <input type="submit" value="Login" class="btn">
+
+        </div>
+
+        <div class="row">
+          <p>Need an account?</p>
+         <a href="/register" class="btn">Register</a>
+        </div>
+    </form>
+</div>

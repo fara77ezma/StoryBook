@@ -16,20 +16,36 @@
     </li>
 </ul>
 <div class="row">
-    {{#each stories}}
-    <div class="col s12 m4">
-        <div class="card">
-            <div class="card-image">
-              {{{editIcon user ../user _id}}}
-            </div>
+  {{#each stories}}
+  <div class="col s12 m4">
+    <div class="card">
+      {{#if user._id}}
+        <div class="card-image">
+          {{{editIcon user ../user _id}}}
+        </div>
+      {{else}}
+        <div class="card-image">
+          {{{editIcon localuser ../localuser _id}}}
+        </div>
+      {{/if}}
+
             <div class="card-content center-align">
                 <h5>{{title}}</h5>
                 <p>{{stripTags (truncate body 150)}}</p>
                 <br>
+                {{#if user._id}}
+
                 <div class="chip">
                     <img src="{{user.image}}" alt="">
                     <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
                 </div>
+                {{else}}
+                <div class="chip">
+                    <img src="{{localuser.image}}" alt="">
+                    <a href="/stories/user/{{localuser._id}}">{{localuser.firstName}} {{localuser.lastName}}</a>
+                </div>
+                {{/if}}
+
             </div>
             <div class="card-action center-align">
                 <a href="/stories/{{_id}}" class="btn grey">Read More</a>
@@ -48,9 +64,13 @@
         var queryValue = document.getElementById('search').value;
 
         // Update the action attribute with the actual query
-        this.action = '/stories/search/' + encodeURIComponent(queryValue);
+        if(queryValue!=''){
+          this.action = '/stories/search/' + encodeURIComponent(queryValue);
 
-        // Submit the form
-        this.submit();
+          // Submit the form
+          this.submit();
+
+        }
+
     });
 </script>

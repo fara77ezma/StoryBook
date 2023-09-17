@@ -6,6 +6,10 @@ const passport = require('passport');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const bodyparser = require('body-parser');
+const nodemailer = require('nodemailer');
+
+
 
 const app = express();
 const dotenv = require('dotenv');
@@ -14,6 +18,7 @@ const connectDB = require('./config/db');
 // Load our config file
 dotenv.config({ path: './config/config.env' });
 require('./config/passport')(passport);
+
 //session midlware(should be above passport midlware)
 //body parser for req.body
 app.use(express.urlencoded({extended:false}));
@@ -45,6 +50,8 @@ app.use(passport.session());
 //global vars
 app.use((req,res,next)=>{
   res.locals.user=req.user||null;
+  res.locals.localuser=req.user||null;
+
   next();
 })
 //static folders

@@ -1,0 +1,154 @@
+p {
+  margin: 10px 0 !important;
+}
+
+.login-container {
+  width: 400px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.fa-small {
+  font-size: 16px !important;
+}
+
+.btn-float {
+  float: left;
+  margin-right: 10px;
+}
+
+.img-small {
+  width: 180px;
+}
+
+.fa-large {
+  font-size: 26px !important;
+}
+.input-group{
+  display:table;
+  width:100%;
+}
+.input-group .input-field,
+.input-group .input-group-addon{
+  display:table-cell;
+}
+
+.search-form {
+  margin: 70px 0;
+}
+.input-field.warning {
+    border: 2px solid #FFA500; /* Orange border for warnings */
+    background-color: #FFF8DC; /* Light yellow background for warnings */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-field.warning .icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.input-field.warning .message {
+    flex-grow: 1;
+    font-weight: bold;
+}
+/* CSS Style */
+.or-divider-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+}
+
+.or-text {
+    display: inline-block;
+    padding: 0 10px; /* Adjust spacing around OR text */
+    background-color: #fff; /* Background color of the OR text */
+    font-size: 1em;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+/* CSS Style */
+.success-message {
+  background-color: #4CAF50; /* Green background color */
+  color: #ffffff; /* White text color */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.success-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.success-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Optional: Add animation for a fade-in effect */
+.success-message {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Reset some default styles */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+}
+
+/* Center the content vertically and horizontally */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Style the verification success message */
+.verification-success {
+    text-align: center;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the checkmark icon */
+.fa-check-circle {
+    color: #4CAF50; /* Green color */
+    font-size: 60px;
+    margin-bottom: 20px;
+}

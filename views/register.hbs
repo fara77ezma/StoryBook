@@ -1,0 +1,73 @@
+<h3>Register</h3>
+{{#if  msg}}
+  <div class="row">
+    <div class="input-field warning">
+      <span class="icon">⚠️</span>
+      <span class="message">{{msg}}</span>
+    </div>
+  </div>
+{{/if}}
+
+<div class="row">
+
+          <div class="row">
+          <div class="section">
+              <a href="/auth/google" class="btn darken-1">
+                  <i class="fab fa-google left"></i> Sign In With Google
+              </a>
+          </div>
+          </div>
+          <div class="or-divider-container">
+          <div class="or-divider">
+              <span class="or-text">OR</span>
+          </div>
+      </div>
+
+
+    <form action="/register" method="POST" class="col s12">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="firstName" name="firstName" value="{{firstname}}">
+                <label for="title">First Name</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="lastName" name="lastName" value="{{lastname}}">
+                <label for="title">Last Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input type="text" id="email" name="email" value="{{email}}">
+                <label for="title">E-mail</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input type="password" id="password" name="password" value="">
+                <label for="title">Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field">
+                <input type="password" id="password2" name="password2" value="">
+                <label for="title">Confirm Password</label>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Register" class="btn">
+
+        </div>
+
+
+        <div class="row">
+          <p>Already have an account? </p>
+         <a href="/login" class="btn">Login</a>
+        </div>
+
+    </form>
+</div>
