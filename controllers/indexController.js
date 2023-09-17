@@ -66,7 +66,7 @@ const Register= async(req,res)=>{
      {
        if(password.length<=6)
        {
-         res.render('register',{layout:'register',firstName,lastName,email,msg:'passwords should be more than 6 characters'});
+      await res.render('register',{layout:'register',firstName,lastName,email,msg:'passwords should be more than 6 characters'});
 
        }
 
@@ -86,7 +86,7 @@ const Register= async(req,res)=>{
          const token=await new Token({userId:user._id,token:crypto.randomBytes(32).toString("hex")}).save();
          const url=`${process.env.BASE_URL}${user._id}/verify/${token.token}`;
          await sendEmail(user.email,"Verify Email",url);
-         res.render('locallogin',{layout:'locallogin',sucessmsg:"An E-mail send to your account please verify "});
+         await res.render('locallogin',{layout:'locallogin',sucessmsg:"An E-mail send to your account please verify "});
 
        } catch (e) {
          console.error(e);
