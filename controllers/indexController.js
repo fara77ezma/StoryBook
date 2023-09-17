@@ -13,16 +13,19 @@ const yourDashboard=async (req,res)=>{
 
   try {
     let user=await localUser.findById(req.user.id);
-    if(user.isverified==false) res.render('checkverified',{layout:'checkverify',msg:'Please verify your Email First'});
-
+    if(user&&user.isverified==false) res.render('checkverified',{layout:'checkverify',msg:'Please verify your Email First'});
+    else{
     let stories= await Story.find({user:req.user.id}).lean();
     if(stories.length==0) {
 
       stories= await Story.find({localuser:req.user.id}).lean();
-  }
-
+    }
     res.render('dashboard',{name:req.user.firstName,stories});
-  } catch (e) {
+
+  }
+  }
+  
+   catch (e) {
  console.error(e);
  res.render('error/500');
   }
@@ -53,7 +56,7 @@ const logout =(req,res)=>{
 
 const Register= async(req,res)=>{
   req.body.isverified=false;
-  const {firstName,lastName,email,password,password2,isverified}=req.body;
+  const {firstname,lastname,email,password,password2,isverified}=req.body;
 
    let localuser= await localUser.findOne({email});
 
@@ -63,10 +66,11 @@ const Register= async(req,res)=>{
      {
        if(password.length<=6)
        {
-         res.render('register',{layout:'register',firstName,lastName,email,msg:'passwords should be more than 6 characters'});
+         res.render('register',{layout:'register',firstname,lastname,email,msg:'passwords should be more than 6 characters'});
 
        }
-       try {
+       else{
+         try {
 
           user= new localUser(req.body);
           //bcrpy password
@@ -87,6 +91,7 @@ const Register= async(req,res)=>{
        } catch (e) {
          console.error(e);
        }
+     }
 
      }
      else {
