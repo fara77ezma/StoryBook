@@ -10,7 +10,7 @@ module.exports= function(passport){
   passport.use(new googleStrategy({
     clientID:process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:'/auth/google/callback'
+    callbackURL:'https://story-book-2clj.onrender.com/auth/google/callback'
   },async (acessToken,refreshToken,profile,done)=>{
      const user=new User({
        googleId:profile.id,

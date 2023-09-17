@@ -196,7 +196,7 @@ const setNewPassword=async (req,res)=>{
        const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
        await localUser.findByIdAndUpdate(req.body.id, { password: hashedPassword });
-       res.render('locallogin', { layout: 'locallogin', userId: req.body.id, successmsg: 'Your Password has been changed successfully' });
+       res.render('locallogin', { layout: 'locallogin', userId: req.body.id, sucessmsg: 'Your Password has been changed successfully' });
      } catch (error) {
        console.error(error);
      }
