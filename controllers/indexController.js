@@ -24,7 +24,7 @@ const yourDashboard=async (req,res)=>{
 
   }
   }
-  
+
    catch (e) {
  console.error(e);
  res.render('error/500');
@@ -66,10 +66,10 @@ const Register= async(req,res)=>{
      {
        if(password.length<=6)
        {
-         res.render('register',{layout:'register',firstname,lastname,email,msg:'passwords should be more than 6 characters'});
+         res.render('register',{layout:'register',firstName,lastName,email,msg:'passwords should be more than 6 characters'});
 
        }
-       else{
+
          try {
 
           user= new localUser(req.body);
@@ -91,9 +91,9 @@ const Register= async(req,res)=>{
        } catch (e) {
          console.error(e);
        }
-     }
 
-     }
+
+   }
      else {
        res.render('register',{layout:'register',firstName,lastName,email,msg:'passwords should match'});
      }
