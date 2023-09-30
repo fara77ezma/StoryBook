@@ -352,7 +352,7 @@ else {
 
 }
 }
-      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',file:`uploads/${req.file.filename}`});
+      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',image:`uploads/${req.file.filename}`});
       console.log(req.file);
 
     }
