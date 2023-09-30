@@ -256,7 +256,7 @@ const updateProfile=async (req,res)=>{
       }
     }
 
-    res.render('profile',{firstName:req.body.firstName,lastName:req.body.lastName,email:"google",image:`uploads/${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
+    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
 
   } catch (e) {
     console.error(e);
@@ -302,7 +302,7 @@ const updatePassword=async (req,res)=>{
         {
           if(req.body.password.length<=6)
           {
-          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email,msg:'passwords should be more than 6 characters'});
+          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data},msg:'passwords should be more than 6 characters'});
 
           }
           else{
@@ -313,7 +313,7 @@ const updatePassword=async (req,res)=>{
           const salt=   await bcrypt.genSalt(10)
           const hash= await bcrypt.hash(req.body.password,salt);
           await localUser.findByIdAndUpdate(req.user.id,{password:hash});
-          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email,sucessmsg:"Password has been changed sucessfully"});
+          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data},sucessmsg:"Password has been changed sucessfully"});
 
 
           } catch (e) {
@@ -326,7 +326,7 @@ const updatePassword=async (req,res)=>{
 
   }
   else{
-    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email,msg:'Current password should be correct'});
+    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,msg:'Current password should be correct'});
 
   }
 
@@ -352,7 +352,7 @@ else {
 
 }
 }
-      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',image:`uploads/${req.file.filename}`});
+      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.file.filename}`});
       console.log(req.file);
 
     }
