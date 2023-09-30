@@ -36,12 +36,13 @@
                 {{#if user._id}}
 
                 <div class="chip">
-                    <img src="{{user.image}}" alt="">
+                    <img src="{{getImageUrl user.image.data}}" alt="">
                     <a href="/stories/user/{{user._id}}">{{user.displayName}}</a>
                 </div>
                 {{else}}
                 <div class="chip">
-                    <img src="{{localuser.image}}" alt="">
+
+                  <img src="{{getImageUrl localuser.image.data}}" alt="">
                     <a href="/stories/user/{{localuser._id}}">{{localuser.firstName}} {{localuser.lastName}}</a>
                 </div>
                 {{/if}}

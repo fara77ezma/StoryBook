@@ -1,5 +1,5 @@
 const nodemailer = require('nodemailer');
-module.exports=async(email,subject,text)=>{
+module.exports=async(email,subject,text,stauts)=>{
 
   try {
     const transporter=nodemailer.createTransport({
@@ -17,7 +17,15 @@ module.exports=async(email,subject,text)=>{
       from:process.env.USER,
       to:email,
       subject:subject,
-      text:text
+      text:`Hi there,
+Thank you for signing up for StoryBook. Click on the link below to ${stauts}:
+${text}
+If you did not sign up for a StoryBook account,
+you can safely ignore this email.
+
+Best,
+
+Farah`
     });
 console.log("Email send sucessfully");
 

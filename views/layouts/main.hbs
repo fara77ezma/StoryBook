@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="/css/mainstyle.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/profilestyle.css">
 
 
 
@@ -18,6 +21,7 @@
       {{{body}}}
           </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.14.1/ckeditor.js"
           integrity="sha256-bEIQpI72w9NJuIVhTLFUF2/8uxl0u5800r8ddViuv+o=" crossorigin="anonymous"></script>
           <script>
@@ -26,6 +30,13 @@
       CKEDITOR.replace('body', {
                  plugins: 'wysiwygarea, toolbar, basicstyles, link'
              })
+             document.addEventListener('DOMContentLoaded', function() {
+                 var collapsibles = document.querySelectorAll('.collapsible');
+                 M.Collapsible.init(collapsibles);
+
+                 var modals = document.querySelectorAll('.modal');
+                 M.Modal.init(modals);
+             });
       </script>
   </body>
 </html>

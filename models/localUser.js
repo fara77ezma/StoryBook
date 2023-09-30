@@ -21,13 +21,20 @@ isverified:{
        type:Boolean,
        defualt:false
      },
-  image:{
-  type:String
-  },
+     image:{
+       contentType:String,
+       data:Buffer,
+
+     },
+
   createdAt:{
      type:Date,
      defualt:Date.now
    },
+   bio:{
+     type:String,
+
+   }
 
 });
 

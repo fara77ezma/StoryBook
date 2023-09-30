@@ -1,0 +1,111 @@
+{{#if msg}}
+  <div class="row">
+    <div class="input-field warning">
+      <span class="icon">⚠️</span>
+      <span class="message">{{msg}}</span>
+    </div>
+  </div>
+{{/if}}
+
+{{#if sucessmsg}}
+  <div class="success-message">
+    <div class="success-icon">✔️</div>
+    <div class="success-text">{{sucessmsg}}</div>
+  </div>
+{{/if}}
+
+<div class="row">
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <div class="file-field input-field">
+      <div class="profile-picture">
+        <input id="file-upload" name="myImage" type="file" value="">
+
+        <img id="uploaded-image" class="responsive-img" src="{{image}}">
+      </div>
+      <div class="file-path-wrapper">
+      </div>
+    </div>
+      <div class="row">
+    <input type="submit" name="" value="Save New Photo" class="btn">
+  </div>
+
+  </form>
+</div>
+
+
+<script>
+  document.getElementById('file-upload').addEventListener('change', function() {
+    var file = this.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      document.getElementById('uploaded-image').src = e.target.result;
+      document.getElementById('file-upload').value=e.target.result;
+
+    }
+
+    reader.readAsDataURL(file);
+  });
+
+  document.querySelector('.profile-picture').addEventListener('click', function() {
+    document.getElementById('file-upload');
+  });
+
+</script>
+
+<div class="row">
+  <form action="/bio" method="POST" class="col s12">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="row">
+        <div class="input-field">
+            <h5>Add Your Bio:</h5>
+            <textarea id="body" name="bio">{{bio}}</textarea>
+        </div>
+    </div>
+    <div class="row">
+      <input type="submit" value="Add Your bio" class="btn">
+    </div>
+  </form>
+</div>
+<div class="row">
+  <form action="/updateprofile" method="POST" class="col s12">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="input-field">
+      <input type="text" id="firstName" name="firstName" value="{{firstName}}">
+      <label for="firstName">First Name</label>
+    </div>
+    <div class="input-field">
+      <input type="text" id="lastName" name="lastName" value="{{lastName}}">
+      <label for="lastName">Last Name</label>
+    </div>
+    <div class="input-field">
+      <input type="text" id="email" name="email" value="{{email}}" readonly disabled>
+      <label for="email">E-mail</label>
+    </div>
+    <div class="row">
+      <input type="submit" value="Update Profile" class="btn">
+    </div>
+  </form>
+</div>
+{{#if local}}
+<div class="row">
+  <form action="/updatepassword" method="POST" class="col s12">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="input-field">
+      <input type="password" id="curpassword" name="curpassword" value="">
+      <label for="curpassword">Current Password</label>
+    </div>
+    <div class="input-field">
+      <input type="password" id="newpassword" name="password" value="">
+      <label for="newpassword">New Password</label>
+    </div>
+    <div class="input-field">
+      <input type="password" id="password2" name="password2" value="">
+      <label for="password2">Confirm New Password</label>
+    </div>
+    <div class="row">
+      <input type="submit" value="Change Password" class="btn">
+    </div>
+  </form>
+</div>
+{{/if}}

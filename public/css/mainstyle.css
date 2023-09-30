@@ -1,3 +1,4 @@
+
 p {
   margin: 10px 0 !important;
 }
@@ -35,4 +36,107 @@ p {
 
 .search-form {
   margin: 70px 0;
+}
+.input-field.warning {
+    border: 2px solid #FFA500; /* Orange border for warnings */
+    background-color: #FFF8DC; /* Light yellow background for warnings */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.input-field.warning .icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.input-field.warning .message {
+    flex-grow: 1;
+    font-weight: bold;
+}
+/* CSS Style */
+.or-divider-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: #ccc; /* Line color */
+}
+
+.or-text {
+    display: inline-block;
+    padding: 0 10px; /* Adjust spacing around OR text */
+    background-color: #fff; /* Background color of the OR text */
+    font-size: 1em;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+}
+/* CSS Style */
+.success-message {
+  background-color: #4CAF50; /* Green background color */
+  color: #ffffff; /* White text color */
+  padding: 10px;
+  border-radius: 5px; /* Rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.success-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.success-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Optional: Add animation for a fade-in effect */
+.success-message {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+.refined-bio-card {
+    background-color: #f9f9f9; /* Very light gray background */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 20px;
+}
+
+.refined-profile-pic {
+    border: 2px solid #666; /* Dark border around the profile picture */
+}
+
+.refined-bio-text {
+    font-size: 1em; /* Standard font size */
+    color: #555; /* Dark text color */
+    margin-bottom: 20px; /* Add some spacing between the bio and the link */
+}
+
+.read-more-link {
+    font-weight: bold;
+    color: #555; /* Dark link color */
+    text-decoration: none;
+}
+
+.read-more-link:hover {
+    text-decoration: underline;
 }

@@ -15,7 +15,10 @@ router.get('/forget-password',indexController.forgetPassword);
 router.post('/sendemailforpassword',indexController.recoverPassword);
 router.get('/:id/resetpassword/:token',indexController.resetPasswordEmail);
 router.post('/newpassword',indexController.setNewPassword);
-
-
+router.get('/profile',indexController.getProfile);
+router.put('/updateprofile',indexController.updateProfile);
+router.put('/updatepassword',indexController.updatePassword);
+router.post('/upload',indexController.uploadImage);
+router.put('/bio',indexController.updateBio);
 
 module.exports=router;

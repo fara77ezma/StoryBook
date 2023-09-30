@@ -13,6 +13,7 @@ router.put('/:id',ensureAuth,storiesController.updateStory);
 router.delete('/:id',ensureAuth,storiesController.deleteStory);
 router.get('/user/:userId',ensureAuth,storiesController.showUserStories);
 router.get('/search/:query',ensureAuth,storiesController.searchByTitle)
+router.get('/delete/:id',ensureAuth,storiesController.sureWantDelete);
 
 
 module.exports=router;

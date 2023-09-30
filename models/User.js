@@ -17,13 +17,18 @@ const userSchema=mongoose.Schema({
     required:true
   },
   image:{
-  type:String
-},
+    contentType:String,
+    data:Buffer,
+
+  },
   createdAt:{
      type:Date,
      defualt:Date.now
    },
+ bio:{
+   type:String,
 
+ }
 });
 
 module.exports=mongoose.model('User',userSchema);

@@ -2,6 +2,8 @@ const Story=require('../models/Story');
 const localUser =require('../models/localUser');
 const User=require('../models/User');
 const bcrypt = require("bcrypt");
+const Image =require('../models/Image');
+
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -33,6 +35,7 @@ const addNewStory=async (req,res)=>{
 const showPublicStories= async (req,res)=>{
   try {
     const local= await localUser.findById(req.user.id);
+
     if(local){
       if(local.isverified==false) res.render('checkverified',{layout:'checkverify',msg:'Please verify your Email First'});
     }
@@ -41,7 +44,7 @@ const showPublicStories= async (req,res)=>{
     .populate('localuser')//to get user data
     .sort({createdAt:'desc'})
     .lean();
-    // console.log(stories);
+
     res.render('stories/index',{stories});
 
   } catch (e) {
@@ -76,17 +79,23 @@ const editStory=async (req,res)=>{
 const showStory=async (req,res)=>{
   try {
     const local= await localUser.findById(req.user.id);
+
     if(local){
       if(local.isverified==false) res.render('checkverified',{layout:'checkverify',msg:'Please verify your Email First'});
+
+
     }
   const story=await Story.findOne({_id:req.params.id}).populate('user').populate('localuser').lean();
     if(!story)  res.render('error/404');
-    else res.render('stories/show',{story});
-  } catch (e) {
+    else {
+
+      res.render('stories/show',{story});
+  }} catch (e) {
     console.error(e);
     res.render('error/500');
 
 }};
+
 /////////////////////////////////////////////////////////////////////////////
 
 const updateStory=async (req,res)=>{
@@ -136,8 +145,11 @@ const deleteStory=async (req,res)=>{
 const showUserStories=async (req,res)=>{
 try {
   const local= await localUser.findById(req.user.id);
+
   if(local){
     if(local.isverified==false) res.render('checkverified',{layout:'checkverify',msg:'Please verify your Email First'});
+
+
   }
   let stories=await Story.find({user:req.params.userId,status:'public'})
   .populate('user')
@@ -149,6 +161,7 @@ try {
     .populate('localuser')//to get user data
     .sort({createdAt:'desc'})
     .lean();
+
   }
 
   res.render('stories/index',{stories});
@@ -178,6 +191,15 @@ try {
   }}
   /////////////////////////////////////////////////////////////////////////////
 
+  const sureWantDelete=async (req,res)=>{
+  try {
+    res.render('stories/delete',{id:req.params.id});
+    } catch (e) {
+      console.error(e);
+      res.render('error/500');
+
+    }
+  }
 module.exports={
   addNewStory,
   showPublicStories,
@@ -186,5 +208,6 @@ module.exports={
   updateStory,
   deleteStory,
   showUserStories,
-  searchByTitle
+  searchByTitle,
+  sureWantDelete
 }

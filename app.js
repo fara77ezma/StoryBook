@@ -8,12 +8,14 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const bodyparser = require('body-parser');
 const nodemailer = require('nodemailer');
-
-
-
+const multer = require('multer');
+const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+
+
+
 
 // Load our config file
 dotenv.config({ path: './config/config.env' });
@@ -41,7 +43,8 @@ app.use(session({
   resave :false, //don't save if nothing modified
   saveUninitialized:false, //don't save if nothing happened
 
-  store: MongoStore.create({mongoUrl:process.env.MONGO_URI})
+  store: MongoStore.create({mongoUrl:process.env.MONGO_URI}),
+  cookie: { maxAge: 3600000 }// This is also set to 1 hour in milliseconds
 }))
 //passport midlware
 app.use(passport.initialize());
@@ -65,6 +68,10 @@ app.engine('.hbs', exphbs.engine({ helpers:{
   ,stripTags
   ,editIcon
   ,select
+  ,getImageUrl: function(data) {
+     return `/uploads/${data}`
+   },
+
 },extname: '.hbs', defaultLayout: "main"}));
 app.set('view engine', '.hbs');
 
