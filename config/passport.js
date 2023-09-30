@@ -10,7 +10,9 @@ module.exports= function(passport){
   passport.use(new googleStrategy({
     clientID:process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:'https://story-book-0prn.onrender.com/auth/google/callback'
+    // callbackURL:'https://story-book-0prn.onrender.com/auth/google/callback',
+    callbackURL:'http://localhost:3000/auth/google/callback'
+
   },async (acessToken,refreshToken,profile,done)=>{
      const user=new User({
        googleId:profile.id,

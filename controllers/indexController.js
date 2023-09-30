@@ -341,6 +341,7 @@ const uploadImage=async (req,res)=>{
     else
     {
     const local= await  localUser.findById(req.user.id);
+    console.log(req.file);
 if(local)
 {
 // console.log(req.file.mimetype);
