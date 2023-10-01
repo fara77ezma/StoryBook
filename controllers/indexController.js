@@ -8,7 +8,7 @@ const upload=require('../config/upload');
 const sendEmail = require("../config/sendEmail");
 const bcrypt = require("bcrypt");
 const Image =require('../models/Image');
-const Base='https://github.com/fara77ezma/StoryBook/tree/master/public/uploads/';
+const Base='uploads/';
 ////////////////////////////////////////////////////////////////////////////////
 
 const yourDashboard=async (req,res)=>{
