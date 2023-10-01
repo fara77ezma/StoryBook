@@ -8,7 +8,7 @@ const upload=require('../config/upload');
 const sendEmail = require("../config/sendEmail");
 const bcrypt = require("bcrypt");
 const Image =require('../models/Image');
-const Base='https://github.com/fara77ezma/StoryBook/tree/master/public/uploads';
+const Base='https://github.com/fara77ezma/StoryBook/tree/master/public/uploads/';
 ////////////////////////////////////////////////////////////////////////////////
 
 const yourDashboard=async (req,res)=>{
@@ -346,7 +346,7 @@ else {
 
 }
 }
-      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`https://github.com/fara77ezma/StoryBook/tree/master/public/uploads/${req.file.filename}`});
+      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`${Base}${req.file.filename}`});
       console.log(req.file);
 
     }
