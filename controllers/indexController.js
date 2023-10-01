@@ -226,7 +226,7 @@ const getProfile=async (req,res)=>{
   let image=null;
   if(local )image=local.image;
   if(google) image=google.image;
- res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`${Base}${image.data}`});
+ res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`${image.data}`});
 
 
 }
@@ -249,7 +249,7 @@ const updateProfile=async (req,res)=>{
       }
     }
 
-    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`${Base}${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
+    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
 
   } catch (e) {
     console.error(e);
@@ -276,7 +276,7 @@ const updateBio=async (req,res)=>{
       }
     }
 
-    res.render('profile',{bio:req.body.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:"google",image:`${Base}${req.user.image.data}`,sucessmsg:"Bio has been updated sucessfully"});
+    res.render('profile',{bio:req.body.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:"google",image:`${req.user.image.data}`,sucessmsg:"Bio has been updated sucessfully"});
 
   } catch (e) {
     console.error(e);
