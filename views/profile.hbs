@@ -14,35 +14,42 @@
   </div>
 {{/if}}
 
-<div class="row">
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <div class="file-field input-field">
-      <div class="profile-picture">
-        <div class="file-field input-field">
-              <div class="btn grey">
-                <span>File</span>
-                <input name="myImage" type="file">
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-            </div>
-      </div>
-      <div class="file-path-wrapper">
-      </div>
-    </div>
-      <div class="row">
-        <img id="uploaded-image" class="responsive-img" src="{{getImageUrl image}}">
+<!-- ... previous code ... -->
 
-    <input type="submit" name="" value="Save New Photo" class="btn">
+<div class="container">
+  <div class="row">
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="special-form">
+      <label for="image-upload" class="profile-picture">
+        <img id="uploaded-image" class="responsive-img circle" src="{{getImageUrl image}}" alt="Uploaded Image">
+        <div class="overlay">Upload Photo</div>
+      </label>
+      <div class="file-path-wrapper" >
+        <input class="file-path validate" type="text" placeholder="Choose a photo" readonly hidden>
+      </div>
+      <input type="file" name="myImage" id="image-upload" accept="image/*" hidden>
+      <input type="submit" value="Save New Photo" class="btn submit-btn">
+    </form>
   </div>
-
-  </form>
 </div>
 
+<!-- ... rest of the code ... -->
+<script type="text/javascript">
+document.getElementById('image-upload').addEventListener('change', function() {
+  const file = this.files[0];
+  if (file) {
+      const reader = new FileReader();
 
+      reader.onload = function(e) {
+          const img = document.getElementById('uploaded-image');
+          img.src = e.target.result;
+      }
+
+      reader.readAsDataURL(file);
+  }
+});
 
 </script>
+
 
 <div class="row">
   <form action="/bio" method="POST" class="col s12">

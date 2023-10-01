@@ -1,127 +1,138 @@
-.profile-picture {
-  position: relative;
-  display: inline-block;
-  width: 150px; /* Adjust the width and height as needed */
-  height: 150px;
-  overflow: hidden;
-  border-radius: 50%; /* Creates a circular shape */
-  background-color: #e0e0e0; /* Background color of the circular button */
-  cursor: pointer; /* Add cursor pointer for interaction */
-  border: 3px solid #fff; /* Add a border to create a clean separation */
-}
-
-.profile-picture input[type="file"] {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
-
-.profile-picture label {
-  position: absolute;
-  bottom: 5px; /* Adjusted position to be at the bottom */
-  right: 5px; /* Adjusted position to be at the right */
-  cursor: pointer;
-  font-size: 24px;
+/* Styles for Warning Message */
+.warning {
+  background-color: #ffc107;
   color: #333;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.profile-picture img {
+.warning .icon {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+/* Styles for Success Message */
+.success-message {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.success-message .success-icon {
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+
+/* Styles for Profile Picture Form */
+
+.special-form .profile-picture {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.special-form .profile-picture img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.special-form .profile-picture .overlay {
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.special-form .profile-picture .overlay:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+/* Styles for Profile Update Form */
+.profile-update-form {
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: px; /* Add margin to the right side */
+}
+.profile-update-form .input-field {
+  margin-bottom: 20px;
+}
+
+.profile-update-form label {
+  font-weight: bold;
+}
+
+
+.profile-update-form input[type="submit"] {
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-update-form input[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Styles for Password Update Form */
+.password-update-form {
+  max-width: 400px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.password-update-form .input-field {
+  margin-bottom: 20px;
+}
+
+.password-update-form label {
+  font-weight: bold;
+}
+
+.password-update-form input[type="password"] {
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Maintains aspect ratio and covers the circular area */
-  border-radius: 50%; /* Ensure the image remains circular */
-}
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
-.confirmation-container {
-    max-width: 600px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.password-update-form input[type="submit"] {
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.confirmation-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.confirmation-buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.confirmation-buttons form,
-.confirmation-buttons a {
-    margin: 0 10px;
-}
-
-.confirmation-buttons button,
-.confirmation-buttons a {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-}
-
-.confirmation-buttons button {
-    background-color: #ff5555;
-    color: #fff;
-}
-
-.cancel-button {
-    background-color: #ddd;
-    color: #555;
-}
-.confirmation-buttons button {
-    background-color: #ff5555;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.confirmation-buttons button:hover {
-    background-color: #ff3333;
-}
-.confirmation-buttons button,
-.confirmation-buttons a {
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-decoration: none;
-    display: inline-block;
-    width: 150px;
-    text-align: center;
-    height: 40px; /* Add this line to set a specific height */
-    line-height: 20px; /* Add this line to vertically center text within the button */
-}
-
-.confirmation-buttons button {
-    background-color: #ff5555;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.confirmation-buttons a {
-    background-color: #ddd;
-    color: #555;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.password-update-form input[type="submit"]:hover {
+  background-color: #2980b9;
 }
