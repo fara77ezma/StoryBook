@@ -18,14 +18,22 @@
   <form action="/upload" method="POST" enctype="multipart/form-data">
     <div class="file-field input-field">
       <div class="profile-picture">
-        <input id="file-upload" name="myImage" type="file" value="">
-
-        <img id="uploaded-image" class="responsive-img" src="{{getImageUrl image}}">
+        <div class="file-field input-field">
+              <div class="btn grey">
+                <span>File</span>
+                <input name="myImage" type="file">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
       </div>
       <div class="file-path-wrapper">
       </div>
     </div>
       <div class="row">
+        <img id="uploaded-image" class="responsive-img" src="{{getImageUrl image}}">
+
     <input type="submit" name="" value="Save New Photo" class="btn">
   </div>
 
@@ -33,23 +41,6 @@
 </div>
 
 
-<script>
-  document.getElementById('file-upload').addEventListener('change', function() {
-    var file = this.files[0];
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-      document.getElementById('uploaded-image').src = e.target.result;
-      document.getElementById('file-upload').value=e.target.result;
-
-    }
-
-    reader.readAsDataURL(file);
-  });
-
-  document.querySelector('.profile-picture').addEventListener('click', function() {
-    document.getElementById('file-upload');
-  });
 
 </script>
 
