@@ -69,7 +69,7 @@ app.engine('.hbs', exphbs.engine({ helpers:{
   ,editIcon
   ,select
   ,getImageUrl: function(data) {
-     return `/public/uploads/${data}`
+     return `http://localhost:3000/uploads/${data}`
    },
 
 },extname: '.hbs', defaultLayout: "main"}));
