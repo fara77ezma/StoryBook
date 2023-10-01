@@ -58,6 +58,8 @@ const logout =(req,res)=>{
 
 const Register= async(req,res)=>{
   req.body.isverified=false;
+  req.body.image={contentType:'image/jfif',data:'defualt.jfif'};
+  req.body.bio="";
 
   const {firstName,lastName,email,password,password2,isverified}=req.body;
 
@@ -83,16 +85,7 @@ const Register= async(req,res)=>{
               await  user.save();
 
 
-             const loc=await localUser.findOne({email:email});
-             const newImage=new Image({
-               image:{
-                 contentType:'image/jfif',
-                 data:'defualt.jfif',
 
-               },
-               localuser:loc.id
-             })
-          await   newImage.save();
          const token=await new Token({userId:user._id,token:crypto.randomBytes(32).toString("hex")}).save();
          const url=`${process.env.BASE_URL}${user._id}/verify/${token.token}`;
          await sendEmail(user.email,"Verify Email",url,'verify your email');
@@ -233,7 +226,7 @@ const getProfile=async (req,res)=>{
   let image=null;
   if(local )image=local.image;
   if(google) image=google.image;
- res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`uploads/${image.data}`,local});
+ res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`uploads/${image.data}`});
 
 
 }
