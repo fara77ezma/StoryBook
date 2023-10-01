@@ -226,7 +226,7 @@ const getProfile=async (req,res)=>{
   let image=null;
   if(local )image=local.image;
   if(google) image=google.image;
- res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`uploads/${image.data}`});
+ res.render('profile',{bio:req.user.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",image:`public/uploads/${image.data}`});
 
 
 }
@@ -249,7 +249,7 @@ const updateProfile=async (req,res)=>{
       }
     }
 
-    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
+    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`public/uploads/${req.user.image.data}`,sucessmsg:"Profile has been updated sucessfully"});
 
   } catch (e) {
     console.error(e);
@@ -276,7 +276,7 @@ const updateBio=async (req,res)=>{
       }
     }
 
-    res.render('profile',{bio:req.body.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:"google",image:`uploads/${req.user.image.data}`,sucessmsg:"Bio has been updated sucessfully"});
+    res.render('profile',{bio:req.body.bio,firstName:req.user.firstName,lastName:req.user.lastName,email:"google",image:`public/uploads/${req.user.image.data}`,sucessmsg:"Bio has been updated sucessfully"});
 
   } catch (e) {
     console.error(e);
@@ -295,7 +295,7 @@ const updatePassword=async (req,res)=>{
         {
           if(req.body.password.length<=6)
           {
-          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,msg:'passwords should be more than 6 characters'});
+          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`public/uploads/${req.user.image.data}`,msg:'passwords should be more than 6 characters'});
 
           }
           else{
@@ -306,7 +306,7 @@ const updatePassword=async (req,res)=>{
           const salt=   await bcrypt.genSalt(10)
           const hash= await bcrypt.hash(req.body.password,salt);
           await localUser.findByIdAndUpdate(req.user.id,{password:hash});
-          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,sucessmsg:"Password has been changed sucessfully"});
+          res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`public/uploads/${req.user.image.data}`,sucessmsg:"Password has been changed sucessfully"});
 
 
           } catch (e) {
@@ -319,7 +319,7 @@ const updatePassword=async (req,res)=>{
 
   }
   else{
-    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.user.image.data}`,msg:'Current password should be correct'});
+    res.render('profile',{firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`public/uploads/${req.user.image.data}`,msg:'Current password should be correct'});
 
   }
 
@@ -346,7 +346,7 @@ else {
 
 }
 }
-      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`uploads/${req.file.filename}`});
+      res.render('profile',{sucessmsg:'File Uploaded sucessfully!',firstName:req.user.firstName,lastName:req.user.lastName,email:req.user.email||"google",bio:req.user.bio,image:`public/uploads/${req.file.filename}`});
       console.log(req.file);
 
     }
