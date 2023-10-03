@@ -44,7 +44,8 @@ const login=(req,res)=>{
 const loginPost=(req,res,next)=>{
 passport.authenticate('local',{
   successRedirect:'/dashboard',
-  failureRedirect:'/login'
+  failureRedirect:'/login',
+  failureflash:true
 })(req,res,next);
 
 };
@@ -62,11 +63,21 @@ const Register= async(req,res)=>{
   req.body.bio="";
 
   const {firstName,lastName,email,password,password2,isverified}=req.body;
+  var reg = /\S+@\S+\.com/;
 
-   let localuser= await localUser.findOne({email});
+   if(reg.test(email))
+   {let localuser= await localUser.findOne({email});
+
 
    if(!localuser)
    {
+     if(!firstName)
+     res.render('register',{layout:'register',firstName,lastName,email,msg:'Please enter your first name'});
+
+     if(!lastName)
+       res.render('register',{layout:'register',firstName,lastName,email,msg:'Please enter your last name'});
+
+
      if(password===password2)
      {
        if(password.length<=6)
@@ -104,7 +115,9 @@ const Register= async(req,res)=>{
    else {
      res.render('register',{layout:'register',firstName,lastName,email,msg:'This email already have an account'});
 
-   }
+   }}
+   else
+   res.render('register',{layout:'register',firstName,lastName,email,msg:'Invalid Email'});
 }
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -162,7 +175,7 @@ const recoverPassword=async (req,res)=>{
       res.render('locallogin',{layout:'locallogin',sucessmsg:"An E-mail send to your account please verify "});
     }
     else {
-      res.render('forgetpassword',{layout:'locallogin',msg:"this Email Not exceed"});
+      res.render('forgetpassword',{layout:'locallogin',msg:"Invalid Email"});
 
     }
 

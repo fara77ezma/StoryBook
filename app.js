@@ -13,7 +13,7 @@ const path = require('path');
 const app = express();
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
-
+const flash=require('connect-flash');
 
 
 
@@ -49,12 +49,16 @@ app.use(session({
 //passport midlware
 app.use(passport.initialize());
 app.use(passport.session());
+//connect flash (because of the redirect we use flash because the message saved at session)
+app.use(flash());
 
 //global vars
 app.use((req,res,next)=>{
   res.locals.user=req.user||null;
   res.locals.localuser=req.user||null;
-
+  res.locals.success_msg=req.flash('success_msg');
+   res.locals.error=req.flash('error');
+  res.locals.msg=req.flash('msg');
   next();
 })
 //static folders

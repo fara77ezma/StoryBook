@@ -10,8 +10,8 @@ module.exports= function(passport){
   passport.use(new googleStrategy({
     clientID:process.env.GOOGLE_CLIENT_ID,
     clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:'https://story-book-0prn.onrender.com/auth/google/callback',
-    // callbackURL:'http://localhost:3000/auth/google/callback'
+    // callbackURL:'https://story-book-0prn.onrender.com/auth/google/callback',
+    callbackURL:'http://localhost:3000/auth/google/callback'
 
   },async (acessToken,refreshToken,profile,done)=>{
      const user=new User({
@@ -52,12 +52,14 @@ passport.use(new localStrategy({
       await  bcrypt.compare(password,user.password,(err,isMatch)=>{
         if(err) console.error(err);
         if(isMatch)   done(null, user);
-        else   done(null, false,{ msg: 'Incorrect Email or Password' });
+        else   {
+          done(null, false,{ error: 'Incorrect Email or Password' });}
         })
 
     } else {
       // If no user is found with the provided email, return false
-      done(null, false,{ msg: 'Incorrect Email or Password ' });
+
+      done(null, false,{ error: 'Incorrect Email or Password ' });
     }
   } catch (e) {
     // Handle any potential errors
