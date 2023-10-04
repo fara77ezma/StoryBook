@@ -15,7 +15,16 @@
     <div class="success-text">{{sucessmsg}}</div>
   </div>
 {{/if}}
+{{#if  !sucessmsg}}
+    {{#if  !error}}
 
+  <div class="success-message">
+    <div class="success-icon">✔️</div>
+    <div class="success-text">Incorrect Password Or Email</div>
+  </div>
+  {{/if}}
+
+{{/if}}
 <div class="row">
 <div class="section">
     <a href="/auth/google" class="btn darken-1">
