@@ -45,7 +45,7 @@ const loginPost=(req,res,next)=>{
 passport.authenticate('local',{
   successRedirect:'/dashboard',
   failureRedirect:'/login',
-  failureflash:true
+failureFlash:true,
 })(req,res,next);
 
 };
