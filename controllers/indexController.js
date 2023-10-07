@@ -35,11 +35,14 @@ const yourDashboard=async (req,res)=>{
 ////////////////////////////////////////////////////////////////////////////////
 
 const login=(req,res)=>{
+
   res.render('locallogin',{
-    layout:'locallogin'
+    layout:'locallogin',
+  messages: req.flash('error')
   });
 };
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
+
 
 const loginPost=(req,res,next)=>{
 passport.authenticate('local',{
@@ -63,7 +66,7 @@ const Register= async(req,res)=>{
   req.body.bio="";
 
   const {firstName,lastName,email,password,password2,isverified}=req.body;
-  var reg = /\S+@\S+\.com/;
+  var reg = /\S+@\S+\.\S/;
 
    if(reg.test(email))
    {let localuser= await localUser.findOne({email});
@@ -382,5 +385,5 @@ module.exports={
   updateProfile,
   updatePassword,
 uploadImage,
-updateBio
+updateBio,
 }

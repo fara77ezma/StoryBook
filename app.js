@@ -40,8 +40,8 @@ connectDB();
 
 app.use(session({
   secret:'anything you want to put here',
-  resave :false, //don't save if nothing modified
-  saveUninitialized:false, //don't save if nothing happened
+  resave :true, //don't save if nothing modified
+  saveUninitialized:true, //don't save if nothing happened
 
   store: MongoStore.create({mongoUrl:process.env.MONGO_URI}),
   cookie: { maxAge: 3600000 }// This is also set to 1 hour in milliseconds

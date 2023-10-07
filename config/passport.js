@@ -42,8 +42,9 @@ module.exports= function(passport){
 ))
 
 passport.use(new localStrategy({
-  usernameField: 'email'
-}, async (email, password, done) => {
+  usernameField: 'email',
+  passReqToCallback: true // for using req.flash
+}, async (req,email, password, done) => {
   try {
     // Attempting to find a user with the provided email
     const user = await localUser.findOne({ email });
@@ -53,13 +54,15 @@ passport.use(new localStrategy({
         if(err) console.error(err);
         if(isMatch)   done(null, user);
         else   {
-          done(null, false,{ error: 'Incorrect Email or Password' });}
+           req.flash('error', 'Incorrect Email or Password');
+           done(null, false);
+         }
         })
 
     } else {
       // If no user is found with the provided email, return false
-
-      done(null, false,{ error: 'Incorrect Email or Password ' });
+      req.flash('error', 'Incorrect Email or Password');
+      done(null, false);
     }
   } catch (e) {
     // Handle any potential errors

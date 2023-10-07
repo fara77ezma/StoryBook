@@ -6,6 +6,7 @@ const {ensureAuth,ensureGuest}=require('../midleware/auth');
 router.get('/',ensureGuest, indexController.login);
 router.get('/login',ensureGuest,indexController.login);
 router.post('/login',ensureGuest,indexController.loginPost);
+
 router.get('/register',ensureGuest,(req,res)=>{res.render('register',{layout:'register'})});
 router.put('/register',ensureGuest,indexController.Register);
 router.get('/dashboard',ensureAuth,indexController.yourDashboard);
